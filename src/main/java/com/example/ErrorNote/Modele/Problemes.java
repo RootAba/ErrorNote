@@ -1,6 +1,7 @@
 package com.example.ErrorNote.Modele;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,6 +22,7 @@ public class Problemes {
 
     //Un probleme peut etre creer par un seul user
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "iduser")
     private Utilisateurs utilisateurs;
 

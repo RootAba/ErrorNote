@@ -1,8 +1,11 @@
 package com.example.ErrorNote.Controller;
 
 import com.example.ErrorNote.Modele.Problemes;
+import com.example.ErrorNote.Modele.Utilisateurs;
 import com.example.ErrorNote.Repository.ProblemesRepo;
+import com.example.ErrorNote.Repository.UtilisateurRepo;
 import com.example.ErrorNote.Service.Problemes_Interface;
+import com.example.ErrorNote.Service.Utilisateurs_Interface;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
@@ -22,11 +25,20 @@ import java.util.List;
 public class Problemes_Controller {
     @Autowired
     private Problemes_Interface problemes_interface;
+    @Autowired
+    private Utilisateurs_Interface utilisateurs_interface;
     @ApiOperation(value = "Creation de probleme")
-    @PostMapping("/problemes")
-    public Problemes CreerProbleme(@RequestBody Problemes problemes){
+    @PostMapping("/problemes/{iduser}")
+    public Object CreerProbleme(@RequestBody Problemes problemes, @PathVariable("iduser") Long iduser){
+        Utilisateurs utilisateurs = utilisateurs_interface.RecupererIdUser(iduser);
 
-       return problemes_interface.CreerProbleme(problemes);
+        if (utilisateurs!=null){
+            problemes.setUtilisateurs(utilisateurs);
+            problemes_interface.CreerProbleme(problemes);
+        }else {
+            return "";
+        }
+       return "";
     }
 
     @ApiOperation(value = "Recherche de probleme avec le titre ")

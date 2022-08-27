@@ -16,4 +16,9 @@ public class Utilisateurs_Implement implements  Utilisateurs_Interface{
     public Utilisateurs ajouterUser(Utilisateurs utilisateurs) {
         return ur.save(utilisateurs);
     }
+
+    @Override
+    public Utilisateurs RecupererIdUser(Long iduser) {
+        return ur.findById(iduser).get();
+    }
 }

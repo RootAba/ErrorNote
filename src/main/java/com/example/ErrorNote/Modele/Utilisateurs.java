@@ -1,5 +1,6 @@
 package com.example.ErrorNote.Modele;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,4 +19,9 @@ public class Utilisateurs {
 @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long iduser;
     private String nom,prenom,contact;
+
+    @ManyToOne
+    @JsonIgnore
+    @JoinColumn(name = "idstatut")
+    private Statut statut;
 }

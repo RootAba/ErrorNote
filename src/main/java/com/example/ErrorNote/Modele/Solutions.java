@@ -1,5 +1,6 @@
 package com.example.ErrorNote.Modele;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -33,6 +34,7 @@ public class Solutions {
                 Hibernate suivra certaines règles pour en sélectionner un par défaut.
      */
     @OneToOne(cascade = CascadeType.ALL)
+    @JsonIgnore
     @JoinColumn(name = "idprobleme", referencedColumnName = "idprobleme")
     private Problemes problemes;
 }

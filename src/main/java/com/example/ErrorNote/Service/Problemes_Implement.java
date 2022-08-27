@@ -25,4 +25,9 @@ public class Problemes_Implement implements  Problemes_Interface{
 
         return pr.Rechercher(titre);
     }
+
+    @Override
+    public Problemes RecupererIdProblme(Long idprobleme) {
+        return pr.findById(idprobleme).get();
+    }
 }
