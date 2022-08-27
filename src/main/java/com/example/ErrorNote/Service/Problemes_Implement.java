@@ -25,7 +25,19 @@ public class Problemes_Implement implements  Problemes_Interface{
 
         return pr.Rechercher(titre);
     }
+    @Override
+    public Problemes modifierStatut(Long idprobleme, Problemes problemes) {
 
+        return pr.findById(idprobleme).map(
+                p->{
+                    p.setEtat(problemes.getEtat());
+
+
+                    return pr.save(p);
+                }
+        ).orElseThrow(() -> new RuntimeException("Probleme non trouvé"));
+
+    }
     @Override
     public Problemes RecupererIdProblme(Long idprobleme) {
         return pr.findById(idprobleme).get();

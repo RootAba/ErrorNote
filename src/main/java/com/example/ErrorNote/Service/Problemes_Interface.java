@@ -15,4 +15,6 @@ public interface Problemes_Interface {
     List<Problemes> Rechercher(String titre);
 
     Problemes RecupererIdProblme(Long idprobleme);
+
+    Problemes modifierStatut(Long idprobleme, Problemes problemes);
 }

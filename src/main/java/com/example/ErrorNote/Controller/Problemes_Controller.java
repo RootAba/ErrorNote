@@ -48,4 +48,11 @@ public class Problemes_Controller {
         return problemes_interface.Rechercher(titre);
     }
 
+    @ApiOperation(value = "Modifier l'Etat d'un probleme ")
+    @PutMapping("/problemes/{idprobleme}")
+    public Problemes RechercherProbleme(@Param("idprobleme") @PathVariable long idprobleme,@RequestBody Problemes problemes){
+
+        return problemes_interface.modifierStatut(idprobleme,problemes);
+    }
+
 }

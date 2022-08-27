@@ -1,15 +1,14 @@
 package com.example.ErrorNote.Controller;
 
 
-import com.example.ErrorNote.Modele.Solutions;
 import com.example.ErrorNote.Modele.Statut;
 import com.example.ErrorNote.Modele.Utilisateurs;
-import com.example.ErrorNote.Service.Solution_Interface;
 import com.example.ErrorNote.Service.Statut_Interface;
 import com.example.ErrorNote.Service.Utilisateurs_Interface;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -27,6 +26,7 @@ public class Utilisateurs_Controller {
         Statut statut = si.RecupererIdStatut(idstatut);
 
         if (statut!=null){
+
             utilisateurs.setStatut(statut);
             ui.ajouterUser(utilisateurs);
         }else {
@@ -36,5 +36,24 @@ public class Utilisateurs_Controller {
 
 
         return "Compte creer avec succes "+utilisateurs.getNom();
+    }
+
+    @ApiOperation(value = "Supprimer user")
+    @DeleteMapping(value = "supprimer/{iduser}/{idstatut}")
+  public  String SupprimerUser(Utilisateurs utilisateurs, @Param("iduser") @PathVariable("iduser") long iduser,@Param("idstatut") @PathVariable("idstatut") long idstatut){
+//long x=utilisateurs.getStatut().getIdstatut();
+      int x = ui.RechercheIduser(idstatut);
+       if(x == 1){
+           return  ui.SupprimerUser(iduser);
+       }
+       else{
+           return  "errer";
+       }
+        /*
+        if(utilisateurs==1){
+            return  ui.SupprimerUser(iduser);
+        }*/
+
+
     }
 }
