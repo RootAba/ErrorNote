@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "solutions")
@@ -18,8 +19,8 @@ public class Solutions {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idsolution;
-    private  String desccriptionsolution,ressource,temps;
-
+    private  String desccriptionsolution,ressource;
+    private Date dateAddSolution;
     //Many Solutions pour un probleme donnee
    /* @ManyToOne
     @JoinColumn(name = "idprobleme")

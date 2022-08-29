@@ -2,6 +2,7 @@ package com.example.ErrorNote.Service;
 
 import com.example.ErrorNote.Modele.Commentaires;
 import com.example.ErrorNote.Modele.Problemes;
+import com.example.ErrorNote.Modele.Utilisateurs;
 
 import java.util.List;
 

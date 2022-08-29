@@ -11,6 +11,6 @@ import javax.transaction.Transactional;
 public interface UtilisateurRepo extends JpaRepository<Utilisateurs,Long> {
     @Transactional
     @Modifying
-    @Query(value = "select status.idstatut from status ,utilisateurs where status.idstatut=utilisateurs.idstatut and utilisateurs.idstatut=:idstatut ",nativeQuery = true)
-    int rechercherStatut(@PathVariable("idstatut") long idstatut);
+    @Query(value = "select status.idstatut from status ,utilisateurs where status.idstatut=utilisateurs.idstatut and utilisateurs.iduser=:iduser ",nativeQuery = true)
+    int rechercherStatut(@PathVariable("iduser") long iduser);
 }

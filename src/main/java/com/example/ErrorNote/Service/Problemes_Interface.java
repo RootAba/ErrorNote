@@ -17,4 +17,7 @@ public interface Problemes_Interface {
     Problemes RecupererIdProblme(Long idprobleme);
 
     Problemes modifierStatut(Long idprobleme, Problemes problemes);
+
+    //supp blem
+    List<Problemes> SuppPro(Long iduser);
 }

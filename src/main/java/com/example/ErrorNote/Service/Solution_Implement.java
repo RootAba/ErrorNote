@@ -1,5 +1,6 @@
 package com.example.ErrorNote.Service;
 
+import com.example.ErrorNote.Modele.Commentaires;
 import com.example.ErrorNote.Modele.Solutions;
 import com.example.ErrorNote.Repository.SolutionsRepo;
 import lombok.AllArgsConstructor;
@@ -17,5 +18,10 @@ public class Solution_Implement implements Solution_Interface{
     public Solutions CreerSolution(Solutions solutions) {
 
         return sr.save(solutions);
+    }
+
+    @Override
+    public Solutions RecupererIdSoL(Long idsolution) {
+        return sr.findById(idsolution).get();
     }
 }

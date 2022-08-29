@@ -20,40 +20,34 @@ public class Utilisateurs_Controller {
     private Utilisateurs_Interface ui;
     @Autowired
     private Statut_Interface si;
-    @ApiOperation(value = "Creation de solution pour un probleme")
+    @ApiOperation(value = "Creation user")
     @PostMapping(value = "/creerUtilisateur/{idstatut}")
-    public String ajouterUtilisateur(@RequestBody Utilisateurs utilisateurs, @PathVariable("idstatut") long idstatut){
-        Statut statut = si.RecupererIdStatut(idstatut);
+    public String ajouterUtilisateur(@RequestBody Utilisateurs utilisateurs,@PathVariable("idstatut") long idstatut){
+//essai de verificationde statu
 
-        if (statut!=null){
-
-            utilisateurs.setStatut(statut);
-            ui.ajouterUser(utilisateurs);
-        }else {
-            return "Statut est vide";
-        }
-
-
+Statut statut =si.RecupererIdStatut(idstatut);
+if(statut!=null){
+    utilisateurs.setStatut(statut);
+    ui.ajouterUser(utilisateurs);
+}
 
         return "Compte creer avec succes "+utilisateurs.getNom();
     }
 
+
+    //Supprimer utilisateur par l'administrateur
+
     @ApiOperation(value = "Supprimer user")
     @DeleteMapping(value = "supprimer/{iduser}/{idstatut}")
   public  String SupprimerUser(Utilisateurs utilisateurs, @Param("iduser") @PathVariable("iduser") long iduser,@Param("idstatut") @PathVariable("idstatut") long idstatut){
-//long x=utilisateurs.getStatut().getIdstatut();
-      int x = ui.RechercheIduser(idstatut);
-       if(x == 1){
-           return  ui.SupprimerUser(iduser);
-       }
-       else{
-           return  "errer";
-       }
-        /*
-        if(utilisateurs==1){
-            return  ui.SupprimerUser(iduser);
-        }*/
 
+        Statut statut = si.RecupererIdStatut(idstatut);
+        if (statut!=null && statut.getStatut().equals("Admin")){
+            return  ui.SupprimerUser(iduser);
+        }
+       else{
+           return  "Vous n'avez pas le droit de supprimer";
+       }
 
     }
 }

@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "problemes")
@@ -18,8 +19,8 @@ public class Problemes {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private  long idprobleme;
-    private String titre, description,techno;
-
+    private String titre, description;
+    private Date dateaddpro;
     //Un probleme peut etre creer par un seul user
     @ManyToOne
     @JsonIgnore

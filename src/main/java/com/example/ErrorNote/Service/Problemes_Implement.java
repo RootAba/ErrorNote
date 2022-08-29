@@ -38,6 +38,12 @@ public class Problemes_Implement implements  Problemes_Interface{
         ).orElseThrow(() -> new RuntimeException("Probleme non trouvé"));
 
     }
+
+    @Override
+    public List<Problemes> SuppPro(Long iduser) {
+        return pr.selectUser(iduser);
+    }
+
     @Override
     public Problemes RecupererIdProblme(Long idprobleme) {
         return pr.findById(idprobleme).get();

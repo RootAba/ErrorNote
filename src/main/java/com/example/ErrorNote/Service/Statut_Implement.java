@@ -13,6 +13,6 @@ public class Statut_Implement implements  Statut_Interface{
     private StatutRepo statutRepo;
     @Override
     public Statut RecupererIdStatut(Long idstatut) {
-        return statutRepo.findById(idstatut).get();
+        return statutRepo.findByIdstatut(idstatut);
     }
 }

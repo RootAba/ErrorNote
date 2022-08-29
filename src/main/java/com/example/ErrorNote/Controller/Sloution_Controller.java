@@ -10,6 +10,8 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
+
 @RestController
 @RequestMapping(value = "solution")
 @Api(value = "hello", description = "Les fonctionnalites sur la Table Solution")
@@ -26,6 +28,7 @@ public class Sloution_Controller {
 
         if (problemes!=null){
             solutions.setProblemes(problemes);
+            solutions.setDateAddSolution(new Date());
             solution_interface.CreerSolution(solutions);
         }else {
             return "";

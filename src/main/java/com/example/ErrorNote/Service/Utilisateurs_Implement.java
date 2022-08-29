@@ -5,6 +5,9 @@ import com.example.ErrorNote.Repository.UtilisateurRepo;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
+
 @AllArgsConstructor
 @Service
 public class Utilisateurs_Implement implements  Utilisateurs_Interface{
@@ -30,8 +33,15 @@ public class Utilisateurs_Implement implements  Utilisateurs_Interface{
         return "Supprimer avec succes";
     }
 
+
+    //verifier l'iden de l'user si il est admin
     @Override
-    public int RechercheIduser(long idstatut) {
-        return ur.rechercherStatut(idstatut);
+    public int RechercheIduser(long iduser) {
+        return ur.rechercherStatut(iduser);
+    }
+
+    @Override
+    public Optional<Utilisateurs> RecupererIdUs(Long iduser) {
+        return ur.findById(iduser);
     }
 }

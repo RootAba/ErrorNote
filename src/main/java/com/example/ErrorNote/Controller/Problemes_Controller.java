@@ -2,8 +2,6 @@ package com.example.ErrorNote.Controller;
 
 import com.example.ErrorNote.Modele.Problemes;
 import com.example.ErrorNote.Modele.Utilisateurs;
-import com.example.ErrorNote.Repository.ProblemesRepo;
-import com.example.ErrorNote.Repository.UtilisateurRepo;
 import com.example.ErrorNote.Service.Problemes_Interface;
 import com.example.ErrorNote.Service.Utilisateurs_Interface;
 import io.swagger.annotations.Api;
@@ -12,8 +10,10 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
+import org.springframework.format.datetime.DateFormatter;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -29,13 +29,16 @@ public class Problemes_Controller {
     private Utilisateurs_Interface utilisateurs_interface;
     @ApiOperation(value = "Creation de probleme")
     @PostMapping("/problemes/{iduser}")
-    public Object CreerProbleme(@RequestBody Problemes problemes, @PathVariable("iduser") Long iduser){
-        Utilisateurs utilisateurs = utilisateurs_interface.RecupererIdUser(iduser);
+    public Object CreerProbleme(@RequestBody Problemes problemes,@PathVariable("iduser") long iduser){
+       Utilisateurs utilisateurs = utilisateurs_interface.RecupererIdUser(iduser);
 
         if (utilisateurs!=null){
-            problemes.setUtilisateurs(utilisateurs);
-            problemes_interface.CreerProbleme(problemes);
-        }else {
+           problemes.setUtilisateurs(utilisateurs);
+           
+
+           problemes.setDateaddpro(new Date());
+            problemes_interface.CreerProbleme(problemes);}
+        else {
             return "";
         }
        return "";
@@ -55,4 +58,16 @@ public class Problemes_Controller {
         return problemes_interface.modifierStatut(idprobleme,problemes);
     }
 
+
+    // Supprimer un probleme qui releve de l'administrateur
+
+    /*
+    @ApiOperation(value = "Supprimer probleme ")
+    @PostMapping("/problemes/{iduser}")
+    public long SuppProbleme(@Param("iduser") @PathVariable("iduser") long iduser){
+        long id = utilisateurs_interface.RecupererIdUser(iduser).getIduser();
+
+     return id;
+       // return null;
+    }*/
 }
