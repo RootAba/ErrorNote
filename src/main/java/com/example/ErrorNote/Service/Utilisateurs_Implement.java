@@ -33,15 +33,18 @@ public class Utilisateurs_Implement implements  Utilisateurs_Interface{
         return "Supprimer avec succes";
     }
 
-
     //verifier l'iden de l'user si il est admin
     @Override
     public int RechercheIduser(long iduser) {
         return ur.rechercherStatut(iduser);
     }
-
     @Override
     public Optional<Utilisateurs> RecupererIdUs(Long iduser) {
         return ur.findById(iduser);
+    }
+
+    @Override
+    public Utilisateurs Connecter(String email, String mdp) {
+        return ur.findByEmail(email);
     }
 }

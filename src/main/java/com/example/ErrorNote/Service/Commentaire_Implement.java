@@ -28,9 +28,16 @@ private CommentairesRepo commentairesRepo;
         return "ajouter";
     }
 
-    @Override
-    public List<Commentaires> afficherTousSurUser(long idsolution) {
 
-        return commentairesRepo.RepoafficherTousSurUser(idsolution);
+    //Methode qui affiche tous sur Un probleme de part son id
+    @Override
+    public List<Commentaires> afficherTousSurUser(long idprobleme) {
+        return commentairesRepo.RepoafficherTousSurUser(idprobleme);
     }
+/*
+    @Override
+    public String afficherTousSurUser(long idsolution) {
+        commentairesRepo.RepoafficherTousSurUser(idsolution);
+        return "";
+    }*/
 }

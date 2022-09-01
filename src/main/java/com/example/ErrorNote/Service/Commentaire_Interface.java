@@ -13,5 +13,7 @@ public interface Commentaire_Interface {
  String AjoutCommentaireAutre(String contenuecomm,long idsolution,long iduser);
 
 
-    List<Commentaires> afficherTousSurUser(long idsolution);
+    //List<Commentaires> afficherTousSurUser(long idsolution);
+
+    List<Commentaires> afficherTousSurUser(long idprobleme);
 }

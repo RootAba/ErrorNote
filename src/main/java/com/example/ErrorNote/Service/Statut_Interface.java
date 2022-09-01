@@ -5,5 +5,6 @@ import com.example.ErrorNote.Modele.Utilisateurs;
 
 public interface Statut_Interface {
 
-    Statut RecupererIdStatut(Long idstatut);
+    Statut
+    RecupererIdStatut(Long idstatut);
 }

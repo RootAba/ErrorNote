@@ -7,7 +7,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "solutions")
@@ -38,4 +40,10 @@ public class Solutions {
     @JsonIgnore
     @JoinColumn(name = "idprobleme", referencedColumnName = "idprobleme")
     private Problemes problemes;
+
+    @OneToMany(mappedBy = "solutions")
+    @JsonIgnore
+    List<Commentaires> commentairesList = new ArrayList<>();
+
+
 }

@@ -10,10 +10,10 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 public interface CommentairesRepo extends JpaRepository<Commentaires,Long> {
-    @Transactional
-    @Modifying
-    @Query(value = "SELECT commentaires.idcom, commentaires.contenuecomm from commentaires ,solutions where commentaires.idsolution=solutions.idsolution and solutions.idsolution=:idsolution",nativeQuery = true)
-    List<Commentaires> RepoafficherTousSurUser(@Param("idsolution") long idsolution);
+    //@Transactional
+   // @Modifying
+    @Query(value = "SELECT problemes.titre,problemes.description ,solutions.descriptionsolution, commentaires.contenuecomm from commentaires ,solutions,problemes where commentaires.idsolution=solutions.idsolution and solutions.idprobleme=problemes.idprobleme and problemes.idprobleme=:idprobleme",nativeQuery = true)
+    List<Commentaires> RepoafficherTousSurUser(@Param("idprobleme") long idprobleme);
     @Transactional
     @Modifying
     @Query(value = "INSERT INTO `commentaires` (`contenuecomm`, `idsolution`, `idautreuser`) VALUES (:contenuecomm, :idsolution , :iduser)",nativeQuery = true)

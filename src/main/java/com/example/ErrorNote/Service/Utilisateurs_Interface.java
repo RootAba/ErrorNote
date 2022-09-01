@@ -15,4 +15,7 @@ public interface Utilisateurs_Interface {
     int RechercheIduser(long idstatut);
 
     Optional<Utilisateurs> RecupererIdUs(Long iduser);
+
+    //Fonction ajouter
+    Utilisateurs Connecter(String email,String mdp);
 }

@@ -25,6 +25,9 @@ private Solution_Interface solution_interface;
 
     @Autowired
     private Commentaire_Interface commentaire_interface;
+
+    @Autowired
+    private  Solution_Interface si;
     @ApiOperation(value = "Ajout de commentaire")
     @PostMapping("/ajoutCommentaire/{idsolution}")
     public Object ajoutCommentaire(@RequestBody Commentaires commentaires,@PathVariable("idsolution") Long idsolution){
@@ -46,9 +49,19 @@ private Solution_Interface solution_interface;
         return commentaire_interface.AjoutCommentaireAutre(contenuecomm,idsolution,iduser);
     }
 
-  /*  @ApiOperation(value = "Aff")
+    @ApiOperation(value = "Aff")
     @GetMapping("/AfficherActionUser/{idsolution}")
     public List<Commentaires> AfficherTousSurUser(@Param("idsolution") @PathVariable long idsolution){
-        return commentaire_interface.afficherTousSurUser(idsolution);
-    }*/
+        Solutions solution = si.RecupererIdSoL(idsolution);
+       return solution.getCommentairesList();
+        //return commentaire_interface.afficherTousSurUser(idsolution);
+    }
+
+    @ApiOperation(value = "Affi")
+    @GetMapping("/AfficherActionUser/{idprobleme}")
+    public List<Commentaires> AfficherTousUser(@Param("idprobleme") @PathVariable long idprobleme){
+
+        return commentaire_interface.afficherTousSurUser(idprobleme);
+
+    }
 }

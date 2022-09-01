@@ -18,7 +18,7 @@ public class Utilisateurs {
 @Id
 @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long iduser;
-    private String nom,prenom,contact;
+    private String nom,prenom,contact,mdp,email;
 
     @ManyToOne
     @JsonIgnore

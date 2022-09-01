@@ -13,4 +13,6 @@ public interface UtilisateurRepo extends JpaRepository<Utilisateurs,Long> {
     @Modifying
     @Query(value = "select status.idstatut from status ,utilisateurs where status.idstatut=utilisateurs.idstatut and utilisateurs.iduser=:iduser ",nativeQuery = true)
     int rechercherStatut(@PathVariable("iduser") long iduser);
+
+    Utilisateurs findByEmail(String email);
 }

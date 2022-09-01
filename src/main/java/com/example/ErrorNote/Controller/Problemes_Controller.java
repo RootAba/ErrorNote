@@ -27,7 +27,7 @@ public class Problemes_Controller {
     private Problemes_Interface problemes_interface;
     @Autowired
     private Utilisateurs_Interface utilisateurs_interface;
-    @ApiOperation(value = "Creation de probleme")
+   /* @ApiOperation(value = "Creation de probleme")
     @PostMapping("/problemes/{iduser}")
     public Object CreerProbleme(@RequestBody Problemes problemes,@PathVariable("iduser") long iduser){
        Utilisateurs utilisateurs = utilisateurs_interface.RecupererIdUser(iduser);
@@ -42,6 +42,22 @@ public class Problemes_Controller {
             return "";
         }
        return "";
+    }*/
+
+    @ApiOperation(value = "Connection")
+    @PostMapping(value = "probleme/{iduser}/{email}/{mdp}")
+    public String Authen(@RequestBody Problemes problemes, @Param("email") @PathVariable("email") String email, @PathVariable("mdp") String mdp){
+        Utilisateurs utilisateurs = utilisateurs_interface.Connecter(email,mdp);
+        if(utilisateurs !=null && utilisateurs.getMdp().equals(mdp)){
+//==========Creation de probleme=================
+            utilisateurs.getIduser();
+            problemes.setUtilisateurs(utilisateurs);
+            problemes.setDateaddpro(new Date());
+            problemes_interface.CreerProbleme(problemes);
+            // return "cool";
+            //  return    utilisateurs.getIduser();
+        }
+        return  "erreur";
     }
 
     @ApiOperation(value = "Recherche de probleme avec le titre ")
